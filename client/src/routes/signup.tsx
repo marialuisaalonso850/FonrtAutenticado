@@ -35,7 +35,7 @@ export default function Signup() {
     return "";
   }
 
-  function validatePassword(value: any[] | React.SetStateAction<string>) {
+  function validatePassword(value: any[] | string) {
     if (value.length < 8) {
       return "La contraseña debe tener al menos 6 caracteres";
     }
@@ -102,7 +102,7 @@ export default function Signup() {
     setGmailError(validateGmail(value,));
   }
 
-  function handleChangePassword(value: React.SetStateAction<string>) {
+  function handleChangePassword(value: string) {
     setPassword(value);
     setPasswordError(validatePassword(value));
   }

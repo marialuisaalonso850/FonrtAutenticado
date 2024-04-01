@@ -6,17 +6,51 @@ import type { AuthResponse, AuthResponseError } from "../types/types";
 import React from "react";
 import DefaultLayout from "../layout/DefaultLayout";
 import Footer from "../components/Footer";
-import Swal from 'sweetalert2'; // Importa sweetalert2
+import Swal from "sweetalert2";
+
 
 export default function Login() {
   const [gmail, setGmail] = useState("");
   const [password, setPassword] = useState("");
+  const [gmailError, setGmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [errorResponse, setErrorResponse] = useState("");
   const auth = useAuth();
   const goto = useNavigate();
 
+  function validateEmail(email: string) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  function validatePassword(password: string | any[]) {
+    return password.length >= 8;
+  }
+
+  function handleChangeEmail(value: string) {
+    setGmail(value);
+    if (!validateEmail(value)) {
+      setGmailError("Por favor, ingrese una dirección de correo electrónico válida");
+    } else {
+      setGmailError("");
+    }
+  }
+
+  function handleChangePassword(value: string) {
+    setPassword(value);
+    if (!validatePassword(value)) {
+      setPasswordError("La contraseña debe tener al menos 8 caracteres");
+    } else {
+      setPasswordError("");
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!validateEmail(gmail) || !validatePassword(password)) {
+      return;
+    }
+
     try {
       const response = await fetch(`${API_URL}/login`, {
         method: "POST",
@@ -45,35 +79,21 @@ export default function Login() {
           } else if (role === "usuario") {
             goto("/dashboard");
           }
-        }
 
-        // Mostrar la alerta de registro exitoso
-        Swal.fire({
-          icon: 'success',
-          title: 'Acceso Exitoso',
-          text: 'El usuario se ha inicio correctamente.',
-          showConfirmButton: true,
-          timer: 2000 // La alerta se cerrará automáticamente después de 2 segundos
-        });
+          // Mostrar SweetAlert de éxito
+          Swal.fire({
+            icon: 'success',
+            title: '¡Inicio de sesión exitoso!',
+            text: '¡Bienvenido de nuevo!'
+          });
+        }
       } else {
         const json = (await response.json()) as AuthResponseError;
         setErrorResponse(json.body.error);
-        // Mostrar la alerta de error de inicio de sesión
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Credenciales inválidas. Por favor, inténtalo de nuevo.',
-        });
         return;
       }
     } catch (error) {
       console.log(error);
-      // Mostrar la alerta de error de red
-      Swal.fire({
-        icon: 'error',
-        title: 'Error de red',
-        text: 'Ocurrió un error de red. Por favor, inténtalo de nuevo más tarde.',
-      });
     }
   }
 
@@ -94,7 +114,7 @@ export default function Login() {
                 <p>Accede a nuestra plataforma y disfrutar de servicios de estacionamiento convenientes y seguros.</p>
               </div>
               <div className="regislink">
-                <p className="login-link">¿Aún no tienes cuenta? <a href="/signup">Regístrate aquí</a></p>
+                <p className="login-link">¿Aún no tienes cuenta? <a href="/signup">Registrate aquí</a></p>
               </div>
             </div>
           </div>
@@ -109,15 +129,17 @@ export default function Login() {
                   <input
                     type="email"
                     value={gmail}
-                    onChange={(e) => setGmail(e.target.value)}
+                    onChange={(e) => handleChangeEmail(e.target.value)}
                     placeholder="Correo...."
                     className="log-input"></input>
+                    {gmailError && <p className="error-message">{gmailError}</p>}
                   <input
                     type="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => handleChangePassword(e.target.value)}
                     placeholder="Contraseña...."
                     className="log-input"></input>
+                    {passwordError && <p className="error-message">{passwordError}</p>}
                 </div>
                 <button className="crear">Acceder</button>
               </form>

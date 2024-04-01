@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import DefaultLayout from "../layout/DefaultLayout";
 import { API_URL } from "../Autenticacion/constanst";

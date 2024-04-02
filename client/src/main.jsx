@@ -19,6 +19,7 @@ import Reservas from '../src/routes/Reservas';
 import UserReseve from './routes/UserReserve';
 
 import ExplicacionUser from '../src/routes/ExplicacionUser';
+import  NotFoundPage from './routes/NotFoundPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
   {
     path: "/reservasUser",
     element: <UserReseve />
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />
   },
       
     ]

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './Nav'; // Asegúrate de importar el componente Nav
 
-const BurgerMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 769);
+interface BurgerMenuProps {
+  isOpen: boolean;
+  toggleMenu: () => void;
+}
+
+const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, toggleMenu }) => {
+  const [isWideScreen, setIsWideScreen] = useState<boolean>(window.innerWidth >= 769);
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,25 +21,21 @@ const BurgerMenu = () => {
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
+  const handleToggleMenu = () => {
+    toggleMenu(); // Llamar a la función toggleMenu de las props
   };
 
   return (
     <div className="burger-menu-wrapper">
       {!isWideScreen && (
-        <div className={`burger-button ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+        <div className={`burger-button ${isOpen ? 'open' : ''}`} onClick={handleToggleMenu}>
           <div className="burger-line"></div>
           <div className="burger-line"></div>
           <div className="burger-line"></div>
         </div>
       )}
       <nav className={`menu ${!isWideScreen && isOpen ? 'open' : ''}`}>
-        <Nav closeMenu={closeMenu} />
+        <Nav />
       </nav>
       {isWideScreen && <Nav />} {/* Renderizar el componente Nav normalmente si es una pantalla ancha */}
     </div>
@@ -43,6 +43,9 @@ const BurgerMenu = () => {
 };
 
 export default BurgerMenu;
+
+
+
 
 
 

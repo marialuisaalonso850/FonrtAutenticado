@@ -145,7 +145,10 @@
  /* Estilos para pantallas medianas */
  @media only screen and (min-width: 769px) and (max-width: 1024px) {
    .footer-content {
+    display: flex;
      flex-direction: row;
+     justify-content: space-between;
+     width: 80%;
    }
    .footer{
      padding-right: 0;

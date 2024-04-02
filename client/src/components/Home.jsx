@@ -68,15 +68,18 @@ export const Home = () => {
         <section className="banner" id="home">
           <div className="home">
             <div className="aligh-items-center">
-              <div className="intento">
+              <div className="Hintento">
                 <TrackVisibility>
                   {({ isVisible }) =>
                     <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                       <span className="tagline">Bienvenido Usuario</span>
                       <h1>{`¡Hola Aventureros! `} <span className="txt-rotate" data-rotate='[ "Somos ParkingLocation." ]'><span className="wrap">{text}</span></span></h1>
                       <p>¡Bienvenido a ParkingLocation! Encuentra, reserva y simplifica tu estacionamiento en segundos. Explora una variedad de parqueaderos cercanos, filtra por precios, horarios y servicios, todo para hacer tu vida más fácil. Simplifica tu rutina de estacionamiento con nosotros.</p>
+                      <section className="Mbutton">
                       <button onClick={openModal}>Abrir chat<ArrowRightCircle size={25} /></button>
                       <Chatbot isOpen={modalIsOpen} closeModal={closeModal} />
+
+                      </section>
                     </div>}
                 </TrackVisibility>
               </div>

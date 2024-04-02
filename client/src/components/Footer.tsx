@@ -8,7 +8,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <div className="footer-logo">ParkingLocation</div>
+          <div className="footer-logo">&copy; ParkingLocation</div>
 
         </div>
 

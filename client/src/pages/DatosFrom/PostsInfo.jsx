@@ -12,24 +12,24 @@ import Footer from "../../components/Footer";
 const PostInfo = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
-    const auth = useAuth(); // Obtiene el contexto de autenticación
+    const auth = useAuth();
 
     useEffect(() => {
         const fetchPostById = async () => {
             try {
                 const res = await axios.get(`${config.apiUrl}/${id}`, {
                     headers: {
-                        Authorization: `Bearer ${auth.getAccessToken()}` // Agrega el token de autorización al encabezado
+                        Authorization: `Bearer ${auth.getAccessToken()}` 
                     }
                 });
-                setPost(res.data); // Asumiendo que la respuesta de la API contiene un objeto de poste directamente
+                setPost(res.data); 
             } catch (error) {
                 console.error("Error fetching post:", error);
             }
         };
 
         fetchPostById();
-    }, [id, auth]); // Agrega auth a la lista de dependencias
+    }, [id, auth]); 
 
     if (!post || post.latitud === undefined || post.longitud === undefined) {
         return <div>Loading...</div>;

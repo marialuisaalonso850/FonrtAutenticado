@@ -70,17 +70,17 @@ export default function Login() {
         if (json.body.accessToken && json.body.refreshToken) {
           auth.saveUser(json);
 
-          // Obtener el rol del usuario
+         
           const role = json.body.user.role;
 
-          // Redirigir según el rol del usuario
+    
           if (role === "cliente") {
             goto("/posts");
           } else if (role === "usuario") {
             goto("/dashboard");
           }
 
-          // Mostrar SweetAlert de éxito
+         
           Swal.fire({
             icon: 'success',
             title: '¡Inicio de sesión exitoso!',

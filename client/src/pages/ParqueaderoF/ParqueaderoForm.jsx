@@ -66,27 +66,26 @@ const Post = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación de campos requeridos
     const { title, content, horarios, tarifaCarro, tarifaMoto, telefono, nosotros, latitud, longitud, puestos } = post;
     if (!title || !content || !horarios || !tarifaCarro || !tarifaMoto || !telefono || !nosotros || !latitud || !longitud || !puestos) {
       alert('Por favor completa todos los campos obligatorios.');
       return;
     }
 
-    // Validación de formato de teléfono
+    
     const telefonoPattern = /^\d{10}$/;
     if (!telefonoPattern.test(telefono)) {
       alert('Por favor ingresa un número de teléfono válido (10 dígitos sin espacios ni caracteres especiales).');
       return;
     }
 
-    // Validación de longitud y latitud
+    
     if (latitud < -90 || latitud > 90 || longitud < -180 || longitud > 180) {
       alert('Por favor ingresa valores válidos para la latitud (-90 a 90) y la longitud (-180 a 180).');
       return;
     }
 
-    // Envío del formulario si todas las validaciones son exitosas
+   
     try {
       const requestOptions = {
         method: id === "new" ? 'POST' : 'PUT',

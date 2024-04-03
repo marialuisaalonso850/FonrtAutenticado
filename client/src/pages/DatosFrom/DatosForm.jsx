@@ -36,8 +36,7 @@ const Posts = () => {
     fetchPosts();
   }, [auth]);
 
-  const handleDelete = async (post) => {
-   
+const handleDelete = async (post) => {
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'Esta acción eliminará el parqueadero.',
@@ -49,10 +48,18 @@ const Posts = () => {
       cancelButtonText: 'Cancelar'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        
         try {
+          
           setUserPosts(userPosts.filter((p) => p._id !== post._id));
-          await axios.delete(`${config.apiUrl}/${post._id}`);
+          
+          const accessToken = auth.getAccessToken();
+          
+          const headers = {
+            Authorization: `Bearer ${accessToken}`
+          };
+               
+          await axios.delete(`${config.apiUrl}/${post._id}`, { headers });
+          
           
           Swal.fire(
             '¡Eliminado!',
@@ -61,7 +68,7 @@ const Posts = () => {
           );
         } catch (error) {
           console.error("Error al eliminar el parqueadero:", error);
-        
+         
           Swal.fire(
             'Error',
             'Hubo un problema al eliminar el parqueadero. Por favor, inténtalo de nuevo más tarde.',
@@ -71,6 +78,7 @@ const Posts = () => {
       }
     });
   };
+  
 
   return (
   

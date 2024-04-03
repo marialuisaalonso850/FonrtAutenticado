@@ -75,8 +75,8 @@ const UserReseve = () => {
     const totalPages = doc.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
-      const city = "Ciudad";
-      const department = "Departamento";
+      const city = "Armenia";
+      const department = "Quindio";
       const year = new Date().getFullYear();
       const thankYouText = `¡Gracias por reservar en nuestro parqueadero en ${city}, ${department} ${year}!`;
       doc.text(thankYouText, 14, doc.internal.pageSize.height - 10);

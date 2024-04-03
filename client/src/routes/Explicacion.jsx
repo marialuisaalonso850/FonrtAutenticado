@@ -6,9 +6,8 @@ import Footer from '../components/Footer';
 
 export default function Explicacion() {
   const reproducirVideo = () => {
-    // URL del video de YouTube
+   
     const videoUrl = 'https://youtu.be/lPAu_8lLgio';
-    // Abre una nueva ventana emergente con el video de YouTube
     window.open(videoUrl, '_blank', 'noopener noreferrer');
   };
 

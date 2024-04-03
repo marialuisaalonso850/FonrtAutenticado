@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button } from 'reactstrap';
-import Swal from 'sweetalert2'; // Importar SweetAlert2
+import Swal from 'sweetalert2'; 
 import PortalLayout from "../layout/PortalLayout";
 import Footer from "../components/Footer";
 import puestos from '../puestos.json'
@@ -20,12 +20,12 @@ const Reservas = () => {
       try {
         const response = await axios.get(`${puestos.apiUrl}`, {
           headers: {
-            Authorization: `Bearer ${auth.getAccessToken()}` // Agregar el token de autorización al encabezado
+            Authorization: `Bearer ${auth.getAccessToken()}` 
           }
         });
         if (response.status === 200) {
           const data = response.data;
-          setReservas(data); // Establecer todas las reservas sin filtrar
+          setReservas(data); 
         } else {
           console.error("Error al obtener las reservas:", response.statusText);
         }
@@ -39,19 +39,19 @@ const Reservas = () => {
 
   const handleDelete = async (reservaId) => {
     try {
-      const accessToken = auth.getAccessToken(); // Obtener el token de acceso del contexto de autenticación
+      const accessToken = auth.getAccessToken(); 
       await axios.delete(`https://rolesautenticado.onrender.com/api/reserva/${reservaId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
       });
-      // Mostrar la alerta de éxito
+    
       Swal.fire({
         icon: 'success',
         title: 'Factura enviada',
         text: 'Se ha enviado la factura al correo electrónico.',
       });
-      // Actualizar la lista de reservas después de la eliminación
+     
       fetchReservas(); // Aquí corregimos el nombre de la función a fetchReservas
     } catch (error) {
       console.error("Error al eliminar la reserva:", error);

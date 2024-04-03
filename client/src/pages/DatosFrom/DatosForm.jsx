@@ -93,7 +93,7 @@ const Posts = () => {
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Latitud</th>
-            <th>ID Usuario</th> {/* Cambiado de "Longitud" a "ID Usuario" */}
+            <th>longitud</th> 
             <th>Actualizacion</th>
             <th>Eliminacion</th>
             <th>Reserva</th> 
@@ -105,7 +105,7 @@ const Posts = () => {
               <td> {post.title} </td>
               <td> {post.content} </td>
               <td> {post.latitud} </td>
-              <td> {post.userId} </td> {/* Muestra el ID del usuario */}
+              <td> {post.longitud} </td> 
               <td>
                 <button
                   onClick={() => navigate(`/post/${post._id}`)}

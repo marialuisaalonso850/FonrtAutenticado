@@ -233,13 +233,16 @@ label {
     align-items: center;
     width: 40%;
     background-color: rgb(231, 231, 231);
+    z-index: 9999;;
     
   }
+
 
   .Bcontainer{
     display: flex;
     flex-direction: column;
     width: 50%;
+    z-index: 2800;
 
   }
 
@@ -1603,10 +1606,24 @@ label {
 
 .datosReserva {
   width: 80%;
-  padding: 40px;
-  margin-left: 100px;
+  padding: 50px;
+  margin-left: 400px;
 }
 
+
+@media screen and (min-width: 600px) {
+  .datosReserva {
+    margin-left: -33px;
+  }
+  
+}
+
+@media screen and (min-width: 480px) {
+  .datosReserva {
+    margin-left: 5px;
+  }
+  
+}
 /*intento de login*/
 
 .login-link {

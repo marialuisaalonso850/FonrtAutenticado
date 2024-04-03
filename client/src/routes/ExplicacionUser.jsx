@@ -33,7 +33,7 @@ export default function ExplicacionUser() {
           </ol>
         </div>
         <div className="image-container">
-          <img src="https://i.ibb.co/whgyQpJ/Online-page-bro-removebg-preview.png" alt="Imagen explicativa" className='intentoimg'/>
+          <img src="https://i.ibb.co/5KvC9QQ/Wireframing-bro-removebg-preview.png" alt="Imagen explicativa" className='intentoimg'/>
         </div>
       </div>
 

@@ -363,3 +363,5 @@ thead th.active,tbody td.active {
   font-size: 18px;
   color: #333;
 }
+
+/* Media queries para dispositivos con un ancho máximo de 1024px (pantallas medianas) */

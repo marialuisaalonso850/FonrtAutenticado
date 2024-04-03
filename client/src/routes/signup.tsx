@@ -74,7 +74,7 @@ export default function Signup() {
           console.log("Rol del usuario:", role);
           console.log("El usuario se creó correctamente");
           setErrorResponse("");
-          goto("/Login"); // Redirigir al usuario a la página de inicio de sesión después de registrarse
+          goto("/Login");
           Swal.fire({
             icon: 'success',
             title: 'Registro Exitoso',

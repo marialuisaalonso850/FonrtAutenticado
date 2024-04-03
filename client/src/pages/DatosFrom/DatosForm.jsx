@@ -10,7 +10,7 @@ import { useAuth } from "../../Autenticacion/AutProvider";
 
 const Posts = () => {
   const navigate = useNavigate();
-  const auth = useAuth(); // Obtener el contexto de autenticación
+  const auth = useAuth(); 
   const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
@@ -49,11 +49,11 @@ const Posts = () => {
       cancelButtonText: 'Cancelar'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // Si se confirma la eliminación, procede con la solicitud de eliminación
+        
         try {
           setUserPosts(userPosts.filter((p) => p._id !== post._id));
           await axios.delete(`${config.apiUrl}/${post._id}`);
-          // Mostrar un mensaje de éxito después de eliminar el parqueadero
+          
           Swal.fire(
             '¡Eliminado!',
             'El parqueadero ha sido eliminado correctamente.',
@@ -61,7 +61,7 @@ const Posts = () => {
           );
         } catch (error) {
           console.error("Error al eliminar el parqueadero:", error);
-          // Mostrar un mensaje de error si hay algún problema al eliminar el parqueadero
+        
           Swal.fire(
             'Error',
             'Hubo un problema al eliminar el parqueadero. Por favor, inténtalo de nuevo más tarde.',
